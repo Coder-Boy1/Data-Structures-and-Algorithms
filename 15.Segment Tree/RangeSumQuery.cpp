@@ -1,3 +1,5 @@
+// If the sum is out of bound.
+// Used long long
 /* Amit Bansal - @amitbansal7 */
 #include <bits/stdc++.h>
 #include <string>
@@ -13,7 +15,7 @@
 #define Pi 3.14159
 using namespace std;
 
-void updateQuery(int STree[],int low,int high,int pos,int val,int v)
+void updateQuery(long long STree[],int low,int high,int pos,int val,int v)
 {
 	if(low == high)
 	{
@@ -30,7 +32,7 @@ void updateQuery(int STree[],int low,int high,int pos,int val,int v)
 	STree[pos] = STree[2*pos+1] + STree[2*pos+2];
 }
 
-int RangeSumQuery(int STree[],int qlow,int qhigh,int low,int high,int pos)
+long long RangeSumQuery(long long STree[],int qlow,int qhigh,int low,int high,int pos)
 {
 	if(low >= qlow && high <= qhigh)
 		return STree[pos];
@@ -43,7 +45,7 @@ int RangeSumQuery(int STree[],int qlow,int qhigh,int low,int high,int pos)
 			   RangeSumQuery(STree,qlow,qhigh,mid+1,high,pos*2+2);
 
 }
-void BulidTree(int A[],int STree[],int low,int high,int pos)
+void BulidTree(int A[],long long STree[],int low,int high,int pos)
 {
 	if(low == high)
 	{
@@ -70,12 +72,12 @@ int main()
 
 	BulidTree(A,STree,0,n-1,0);
 
-	printf("%d\n",RangeSumQuery(STree,1,2,0,n-1,0));
+	printf("%lld\n",RangeSumQuery(STree,1,2,0,n-1,0));
 
 	updateQuery(STree,0,n-1,0,8,2);
 	// new array 1,4,8,5
 
-	printf("%d\n",RangeSumQuery(STree,1,2,0,n-1,0));
+	printf("%lld\n",RangeSumQuery(STree,1,2,0,n-1,0));
 
 	return 0;
 }
